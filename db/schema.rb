@@ -10,6 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2023_03_03_000043) do
+
+  create_table "playlist_tracks", force: :cascade do |t|
+    t.integer "playlist_id"
+    t.integer "track_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.string "playlist_id"
+    t.integer "user_id"
+    t.string "playlist_url"
+    t.datetime "deleted_at"
+    t.string "title"
+    t.string "artwork"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string "title"
+    t.integer "artist_id"
+    t.datetime "release_date"
+    t.integer "playlist_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "spotify_user_id"
+    t.string "access_token"
+    t.string "refresh_token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end

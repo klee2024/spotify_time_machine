@@ -1,0 +1,147 @@
+<div>
+  <div>
+    <h1>
+      Playlist #<%= @the_playlist.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/playlists">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_playlist/<%= @the_playlist.id %>">
+          Delete playlist
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Playlist
+      </dt>
+      <dd>
+        <%= @the_playlist.playlist_id %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_playlist.user_id %>
+      </dd>
+
+      <dt>
+        Playlist url
+      </dt>
+      <dd>
+        <%= @the_playlist.playlist_url %>
+      </dd>
+
+      <dt>
+        Deleted at
+      </dt>
+      <dd>
+        <%= @the_playlist.deleted_at %>
+      </dd>
+
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_playlist.title %>
+      </dd>
+
+      <dt>
+        Artwork
+      </dt>
+      <dd>
+        <%= @the_playlist.artwork %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_playlist.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_playlist.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit playlist
+    </h2>
+
+    <form action="/modify_playlist/<%= @the_playlist.id %>"  method="post" >
+      <div>
+        <label for="playlist_id_box">
+          Playlist
+        </label>
+
+        <input type="text" id="playlist_id_box" name="query_playlist_id" value="<%= @the_playlist.playlist_id %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_playlist.user_id %>">
+      </div>
+
+      <div>
+        <label for="playlist_url_box">
+          Playlist url
+        </label>
+
+        <input type="text" id="playlist_url_box" name="query_playlist_url" value="<%= @the_playlist.playlist_url %>">
+      </div>
+
+      <div>
+        <label for="deleted_at_box">
+          Deleted at
+        </label>
+
+        <input type="datetime-local" id="deleted_at_box" name="query_deleted_at"
+         value="<%= @the_playlist.deleted_at %>">
+      </div>
+
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_playlist.title %>">
+      </div>
+
+      <div>
+        <label for="artwork_box">
+          Artwork
+        </label>
+
+        <input type="text" id="artwork_box" name="query_artwork" value="<%= @the_playlist.artwork %>">
+      </div>
+
+      <button>
+        Update playlist
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

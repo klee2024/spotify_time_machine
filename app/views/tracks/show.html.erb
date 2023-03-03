@@ -1,0 +1,117 @@
+<div>
+  <div>
+    <h1>
+      Track #<%= @the_track.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/tracks">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_track/<%= @the_track.id %>">
+          Delete track
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_track.title %>
+      </dd>
+
+      <dt>
+        Artist
+      </dt>
+      <dd>
+        <%= @the_track.artist_id %>
+      </dd>
+
+      <dt>
+        Release date
+      </dt>
+      <dd>
+        <%= @the_track.release_date %>
+      </dd>
+
+      <dt>
+        Playlist
+      </dt>
+      <dd>
+        <%= @the_track.playlist_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_track.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_track.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit track
+    </h2>
+
+    <form action="/modify_track/<%= @the_track.id %>"  method="post" >
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_track.title %>">
+      </div>
+
+      <div>
+        <label for="artist_id_box">
+          Artist
+        </label>
+
+        <input type="text" id="artist_id_box" name="query_artist_id" value="<%= @the_track.artist_id %>">
+      </div>
+
+      <div>
+        <label for="release_date_box">
+          Release date
+        </label>
+
+        <input type="datetime-local" id="release_date_box" name="query_release_date"
+         value="<%= @the_track.release_date %>">
+      </div>
+
+      <div>
+        <label for="playlist_id_box">
+          Playlist
+        </label>
+
+        <input type="text" id="playlist_id_box" name="query_playlist_id" value="<%= @the_track.playlist_id %>">
+      </div>
+
+      <button>
+        Update track
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
