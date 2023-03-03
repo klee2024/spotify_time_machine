@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -27,11 +27,11 @@ module FinalProject
       g.test_framework nil
       g.factory_bot false
       g.scaffold_stylesheet false
-      g.stylesheets     false
-      g.javascripts     false
-      g.helper          false
+      g.stylesheets false
+      g.javascripts false
+      g.helper false
     end
-    
+
     config.action_controller.default_protect_from_forgery = false
     config.active_record.belongs_to_required_by_default = false
 
@@ -48,7 +48,12 @@ module FinalProject
       ActionDispatch::Static,
       Rails.root.join("docs").to_s,
       index: config.public_file_server.index_name,
-      headers: config.public_file_server.headers || {}
+      headers: config.public_file_server.headers || {},
     )
   end
+
+  client_id = "1963566c339b4a0491123250fa1da7f7"
+
+  client_secret = ENV.fetch("SPOTIFY_DEV_CLIENT_SECRET")
+  RSpotify::authenticate(client_id, client_secret)
 end
