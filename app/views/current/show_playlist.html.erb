@@ -1,0 +1,47 @@
+<h1><%=@playlist.name%></h1>
+
+# track id 
+# release date
+# title
+# artist_id
+# playlist_id 
+
+### render the information about the tracks
+
+<table border="1">
+<tr>
+  <th>
+    track title 
+  </th>
+  <th>
+    album 
+  </th>
+  <th>
+    artist
+  </th>
+</tr>
+
+
+  <% @playlist.tracks.each do |track|%>
+    <% artist_names = ""%>
+    <% count = 0%>
+    <%track.artists.each do |artist|%>
+      <%artist_names += artist.name%>
+      <% if count < track.artists.length - 1%>
+        <%artist_names += ", "%>
+      <% count += 1%>
+      <%end%>
+    <%end%>
+    <tr>
+      <td><%=track.name%></td>
+      <td><%= track.album.name%></td>
+      <td><%=artist_names%></td>
+    </tr>
+  <%end%>
+
+</table>
+
+## if archive playlist is pressed would need to put all of the track information into the table 
+
+## insert the records of the tracks into the table 
+<button>archive playlist</button>
