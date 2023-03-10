@@ -18,6 +18,8 @@ class PlaylistsController < ApplicationController
   end
 
   def create
+    playlist = RSpotify::Playlist.find_by_id(params.fetch("query_playlist_id"))
+
     the_playlist = Playlist.new
     the_playlist.playlist_id = params.fetch("query_playlist_id")
     the_playlist.user_id = params.fetch("query_user_id")
@@ -27,10 +29,24 @@ class PlaylistsController < ApplicationController
     the_playlist.artwork = params.fetch("query_artwork")
 
     if the_playlist.valid?
+      #@tracks = playlist.tracks
+      #@hello
       the_playlist.save
-      redirect_to("/playlists", { :notice => "Playlist created successfully." })
+      redirect_to("/playlist_archive", { :notice => "Playlist created successfully." })
+      playlist.tracks.each do |track|
+        song_title = track.name
+        song_artists = ""
+        count = 0
+        track.artists.each do |artist|
+          song_artists += art nist.name
+          if count < track.artists.length - 1
+            artist_names += ", "
+            count += 1
+          end
+        end
+      end
     else
-      redirect_to("/playlists", { :alert => the_playlist.errors.full_messages.to_sentence })
+      redirect_to("/current_playlists", { :alert => the_playlist.errors.full_messages.to_sentence })
     end
   end
 
@@ -47,7 +63,7 @@ class PlaylistsController < ApplicationController
 
     if the_playlist.valid?
       the_playlist.save
-      redirect_to("/playlists/#{the_playlist.id}", { :notice => "Playlist updated successfully."} )
+      redirect_to("/playlists/#{the_playlist.id}", { :notice => "Playlist updated successfully." })
     else
       redirect_to("/playlists/#{the_playlist.id}", { :alert => the_playlist.errors.full_messages.to_sentence })
     end
@@ -59,6 +75,6 @@ class PlaylistsController < ApplicationController
 
     the_playlist.destroy
 
-    redirect_to("/playlists", { :notice => "Playlist deleted successfully."} )
+    redirect_to("/playlists", { :notice => "Playlist deleted successfully." })
   end
 end

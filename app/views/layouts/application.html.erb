@@ -22,7 +22,16 @@
       <li> <a href = "/user_sign_out"> sign out </a></li>
       <li> <a href = "/playlist_archive"> playlist archive </a></li>
       <li> <a href = "/current_playlists"> current playlists </a></li>
+                <% if session[:user_id] == nil%>
+      <li><a href = "/user_sign_in">sign in</a></li>
+      <li><a href = "/user_sign_up">sign up</a></li>
+      <% else %>
+      <li><a href = "/user_sign_out">sign out</a></li>
+      <% end %>
     </ul>
+    </ul>
+    <div style = "color: green"><%= notice%> </div>
+    <div style = "color: red"><%= alert%> </div>
     <%= yield %>
   </body>
 </html>

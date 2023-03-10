@@ -96,5 +96,7 @@ Rails.application.routes.draw do
 
   get("/current_playlists/:playlist_id", { :controller => "current", :action => "show_playlist" })
 
+  get("/playlist_archive/:playlist_id", { :controller => "archive", :action => "show" })
+
   get "/auth/spotify/callback", to: "spotify#spotify"
 end

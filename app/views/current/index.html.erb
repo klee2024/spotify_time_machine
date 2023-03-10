@@ -1,10 +1,5 @@
-<h1> (username's) current playlists </h1>
+<h1> <%=@current_user.spotify_user_id%>'s current playlists </h1>
 
-need to show all of the users current playlists with buttons to archive the playlist or update it 
-
-^ this probably doesn't need to be associated with a database, but will fill out the database information to be added to the correct columns
-
-this needs to correspond to archived playlists 
 <table border="1">
 <tr>
   <th>
@@ -17,17 +12,23 @@ this needs to correspond to archived playlists
     full playlist
   </th>
   <th>
-    archive playlist?
+    archived playlist?
   </th>
 </tr>
 
 
   <% @playlists.each do |playlist|%>
     <tr>
-      <td><img src = <%= playlist.images.at(0).fetch("url")%> alt = "image artwork for playlist" width = 200 height = 200></td>
+      <% if playlist.images.count > 0%>
+        <td><img src = <%= playlist.images.at(0).fetch("url")%> alt = "image artwork for playlist" width = 200 height = 200></td>
+      <%end%>
       <td><%= playlist.name%></td>
       <td><a href = "current_playlists/<%= playlist.id%>">full playlist</a></td>
-      <td><form>archive playlist</form></td>
+      <%archived_playlist = "not archived"%>
+      <% if Playlist.where({ :playlist_id => playlist.id}).count > 0%>
+        <%archived_playlist = "archived"%>
+      <%end%>
+      <td><%= archived_playlist%></td>
     </tr>
   <%end%>
 

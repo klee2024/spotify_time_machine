@@ -3,11 +3,11 @@
 # Table name: tracks
 #
 #  id           :integer          not null, primary key
+#  artist       :string
 #  release_date :datetime
 #  title        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  artist_id    :integer
 #  playlist_id  :integer
 #
 class Track < ApplicationRecord

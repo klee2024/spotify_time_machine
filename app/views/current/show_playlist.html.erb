@@ -1,13 +1,5 @@
 <h1><%=@playlist.name%></h1>
 
-# track id 
-# release date
-# title
-# artist_id
-# playlist_id 
-
-### render the information about the tracks
-
 <table border="1">
 <tr>
   <th>
@@ -41,7 +33,36 @@
 
 </table>
 
-## if archive playlist is pressed would need to put all of the track information into the table 
+<br></br>
+    <form action="/insert_playlist" method="post">
+      <div>
+        <input type="hidden" id="playlist_id" name="query_playlist_id" value = <%= @playlist.id%>>
+      </div>
+      
+      <div>
+        <input type="hidden" id="user_id" name="query_user_id" value = <%=@current_user.id%>>
+      </div>
 
-## insert the records of the tracks into the table 
-<button>archive playlist</button>
+      <div>
+        <input type="hidden" id="playlist_url" name="query_playlist_url">
+      </div>
+
+      <div>
+        <input type="hidden" id="deleted_at" name="query_deleted_at">
+      </div>
+
+      <div>
+        <input type="hidden" id="playlist_title" name="query_title" value = "<%=@playlist.name%>">
+      </div>
+
+      <div>
+        <input type="hidden" id="playlist_artwork" name="query_artwork" value = <%=@playlist.images.at(0).fetch("url")%>>
+      </div>
+
+      <button>
+        Archive playlist
+      </button>
+    </form>
+
+
+    <%= @tracks%>
